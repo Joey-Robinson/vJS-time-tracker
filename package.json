@@ -1,0 +1,43 @@
+{
+  "name": "time-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass src/sass/main.scss dist/css/main.css -w",
+    "dev": "live-server --port=8080",
+    "cssStart": "npm-run-all --parallel dev watch:sass",
+    "compress:sass": "node-sass --output-style compressed -o dist/css src/sass",
+    "compile:sass": "node-sass src/sass/main.scss dist/css/style.comp.css",
+    "concat:css": "concat -o dist/css/style.concat.css dist/css/style.comp.css",
+    "prefix:css": "postcss -u autoprefixer -r dist/css/*",
+    "build:css": "npm-run-all compile:sass concat:css prefix:css compress:sass",
+    "webpackProd": "webpack --mode production",
+    "build": "webpack --config webpack.config.js",
+    "webpackWatch": "webpack --watch",
+    "start": "webpack --webpackWatch & webpack-dev-server --open & webpack",
+    "compress:JS": "uglifyjs dist/js/bundle.js --compress --mangle -o dist/js/bundle.min.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "autoprefixer": "^9.4.10",
+    "concat": "^1.0.3",
+    "copy-webpack-plugin": "^5.0.0",
+    "live-server": "^1.2.1",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.2",
+    "uglify-js": "^3.4.9"
+  }
+}
